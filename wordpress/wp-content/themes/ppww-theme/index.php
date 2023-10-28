@@ -9,7 +9,6 @@
 		<title>Future Imperfect by HTML5 UP</title>
 		<meta charset="<?php bloginfo('charset'); ?>" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
         <?php wp_head(); ?>
 	</head>
 	<body class="is-preload">
@@ -631,11 +630,11 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+<!--			<script src="assets/js/jquery.min.js"></script>-->
+<!--			<script src="assets/js/browser.min.js"></script>-->
+<!--			<script src="assets/js/breakpoints.min.js"></script>-->
+<!--			<script src="assets/js/util.js"></script>-->
+<!--			<script src="assets/js/main.js"></script>-->
 
     <?php wp_footer(); ?>
 
