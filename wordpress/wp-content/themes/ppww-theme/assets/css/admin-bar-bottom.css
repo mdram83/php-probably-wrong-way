@@ -1,0 +1,7 @@
+body {margin-top: -32px;padding-bottom: 32px;}
+body.admin-bar #wphead {padding-top: 0;}
+body.admin-bar #footer {padding-bottom: 32px;}
+#wpadminbar { top: auto !important;bottom: 0;}
+#wpadminbar .quicklinks .menupop .ab-sub-wrapper { bottom: 32px;}
+#wpadminbar .quicklinks .menupop ul { bottom: 0;}
+.admin-bar .header-inner.is-sticky {top: 0;}

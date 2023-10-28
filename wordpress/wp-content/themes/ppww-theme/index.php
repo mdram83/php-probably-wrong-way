@@ -6,7 +6,6 @@
 -->
 <html <?php language_attributes(); ?>>
 	<head>
-		<title>Future Imperfect by HTML5 UP</title>
 		<meta charset="<?php bloginfo('charset'); ?>" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <?php wp_head(); ?>
@@ -18,14 +17,13 @@
 
 				<!-- Header -->
 					<header id="header">
-						<h1><a href="index.html">Future Imperfect</a></h1>
+						<h1><a href="<?= site_url(); ?>"><?php bloginfo('name'); ?></a></h1>
 						<nav class="links">
 							<ul>
-								<li><a href="#">Lorem</a></li>
-								<li><a href="#">Ipsum</a></li>
-								<li><a href="#">Feugiat</a></li>
-								<li><a href="#">Tempus</a></li>
-								<li><a href="#">Adipiscing</a></li>
+								<li><a href="#">About</a></li>
+								<li><a href="#">Blog</a></li>
+								<li><a href="#">Portfolio</a></li>
+                                <li><a href="#">Contact</a></li>
 							</ul>
 						</nav>
 						<nav class="main">
@@ -499,10 +497,10 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 						<!-- Intro -->
 							<section id="intro">
-								<a href="#" class="logo"><img src="images/logo.jpg" alt="" /></a>
+								<a href="#" class="logo"><img src="<?= get_theme_file_uri('/images/logo.png'); ?>" alt="" /></a>
 								<header>
-									<h2>Future Imperfect</h2>
-									<p>Another fine responsive site template by <a href="http://html5up.net">HTML5 UP</a></p>
+									<h2><?php bloginfo('name'); ?></h2>
+									<p><?php bloginfo('description'); ?></p>
 								</header>
 							</section>
 
@@ -628,13 +626,6 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 					</section>
 
 			</div>
-
-		<!-- Scripts -->
-<!--			<script src="assets/js/jquery.min.js"></script>-->
-<!--			<script src="assets/js/browser.min.js"></script>-->
-<!--			<script src="assets/js/breakpoints.min.js"></script>-->
-<!--			<script src="assets/js/util.js"></script>-->
-<!--			<script src="assets/js/main.js"></script>-->
 
     <?php wp_footer(); ?>
 
