@@ -16,12 +16,12 @@ services:
   #redis
   redis:
     image: redis:7-alpine
-    container_name: ppwy-redis
+    container_name: ppww-redis
 
   #web server
   nginx:
     image: nginx:1.25-alpine
-    container_name: ppwy-nginx
+    container_name: ppww-nginx
     restart: always
     ports:
       - "8000:80"
@@ -33,7 +33,7 @@ services:
   #mysql
   db:
     image: mysql:5.7.8
-    container_name: ppwy-mysql
+    container_name: ppww-mysql
     restart: always
     ports:
       - "3306:3306"
