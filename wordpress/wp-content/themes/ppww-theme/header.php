@@ -3,8 +3,8 @@
 	<h1><a href="<?= site_url(); ?>"><?php bloginfo('name'); ?></a></h1>
 	<nav class="links">
 		<ul>
-			<li><a href="<?= site_url('/about/'); ?>">About</a></li>
-			<li><a href="#">Blog</a></li>
+			<li><a <?php if (is_page('about')) echo 'class="current"'; ?> href="<?= site_url('/about/'); ?>">About</a></li>
+			<li><a <?php if (get_post_type() === 'post') echo 'class="current"'; ?> href="<?= site_url('/blog/'); ?>">Blog</a></li>
 			<li><a href="#">Portfolio</a></li>
             <li><a href="#">Inspirations</a></li>
 		</ul>
@@ -44,7 +44,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="<?= site_url('/blog/'); ?>">
 					<h3>Blog</h3>
 					<p>Read the blog</p>
 				</a>

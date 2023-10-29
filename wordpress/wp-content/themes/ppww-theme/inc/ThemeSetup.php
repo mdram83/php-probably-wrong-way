@@ -6,10 +6,10 @@ class ThemeSetup
 {
     public function __construct()
     {
-        add_action('wp_loaded', [$this, 'hideAdminBarForGuestsAndMobile']);
+	    add_action('after_setup_theme', [$this, 'enableThemeFeatures']);
+		add_action('wp_loaded', [$this, 'hideAdminBarForGuestsAndMobile']);
         add_action('wp_head', [$this, 'moveAdminBarToBottom']);
         add_action('wp_enqueue_scripts', [$this, 'loadThemeFiles']);
-        add_action('after_setup_theme', [$this, 'enableThemeFeatures']);
     }
 
     public function hideAdminBarForGuestsAndMobile(): void
@@ -41,6 +41,7 @@ class ThemeSetup
     public function enableThemeFeatures(): void
     {
         add_theme_support('title-tag');
-        add_theme_support('post_thumbnails');
+	    add_theme_support('post-thumbnails');
+	    add_image_size('index', 1500, 350, true);
     }
 }

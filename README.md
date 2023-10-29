@@ -1,13 +1,18 @@
 # php-probably-wrong-way
 
 Todos:
-1. How to add posts thumbnails?
-2. change index/front-page
+1. Hearts (likes)
+2. Comments (consider if I want it)
+3. Dedicated post types for Portfolio (Page first) and Inspirations
+4. Test small icons on front-page
+5. Test post with some code snippets for readers
+6. Plugin... - BIGGER TASK
+
 
 
 Manual steps required to use php-probably-wrong-way theme and plugins in production:
 1. After activating theme go to Appearance, Customize, Site Identity, Site Icon and chose one prepared for site.
-2. Add tagline - short info what is this page about...
+2. Add tagline - short info what is this page about... 'A beginner's programming diary.'
 3. Install plugin - ACF for custom fields and configure it (required subtitle in Pages)
 3.1. 'subtitle' field (100 chars) for Pages and Posts
 4. Add page 'About' with slug 'about'.

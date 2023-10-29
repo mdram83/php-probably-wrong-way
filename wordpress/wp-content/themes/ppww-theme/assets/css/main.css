@@ -3194,6 +3194,10 @@ input, select, textarea {
 					text-transform: uppercase;
 				}
 
+					#header .links ul li a.current {
+						color: #2ebaae;
+					}
+
 		#header .main {
 			height: inherit;
 			line-height: inherit;

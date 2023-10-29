@@ -26,22 +26,19 @@
 
 		while (have_posts()) {
 			the_post();
-			get_template_part('template-parts/content-single', 'post');
+			get_template_part('template-parts/content-index', 'post');
 		}
 
 		?>
 
-        <ul class="actions pagination">
-            <li><a href="<?= site_url('/blog/'); ?>" class="button large next">Back to Blog</a></li>
-            <li><a href="<?= site_url(); ?>" class="button large next">Home Page</a></li>
-        </ul>
+        <!-- Pagination -->
+        <?php get_template_part('template-parts/content-index', 'pagination'); ?>
+
 
     </div>
 
-
-
     <!-- Footer -->
-	<?php get_footer(); ?>
+    <?php get_footer(); ?>
 
 </div>
 

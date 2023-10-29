@@ -32,7 +32,7 @@
 					<p><?= get_field('subtitle'); ?></p>
 				</div>
 			</header>
-			<a href="<?php the_permalink(); ?>" class="image featured"><img src="<?= get_field('backgroundImage'); ?>" alt="" /></a>
+			<a href="<?php the_permalink(); ?>" class="image featured"><img src="" alt="" /></a>
 
             <?php the_content(); ?>
 

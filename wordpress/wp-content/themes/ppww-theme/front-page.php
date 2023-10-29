@@ -25,39 +25,18 @@
                         <?php
                             $homepagePosts =new WP_Query(['posts_per_page' => 2]);
                             while ($homepagePosts->have_posts()) {
-                                $homepagePosts->the_post(); ?>
+                                $homepagePosts->the_post();
+	                            get_template_part('template-parts/content-index', 'post');
+                            }
+                            wp_reset_postdata();
+                        ?>
 
-
-						<!-- Post -->
-							<article class="post">
-								<header>
-									<div class="title">
-										<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-										<p><?= get_field('subtitle'); ?></p>
-									</div>
-									<div class="meta">
-										<time class="published" datetime="<?php the_time('Y-m-d'); ?>"><?php the_time('F j, Y'); ?></time>
-										<a href="<?= get_author_posts_url(get_the_author_meta('ID')); ?>" class="author"><span class="name"><?php the_author(); ?></span><img src="<?= get_avatar_url(get_the_author_meta('user_email')); ?>" alt="" /></a>
-									</div>
-								</header>
-								<a href="<?php the_permalink(); ?>" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
-								<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-								<footer>
-									<ul class="actions">
-										<li><a href="<?php the_permalink(); ?>" class="button large">Continue Reading</a></li>
-									</ul>
-									<ul class="stats">
-										<li><a href="#">General</a></li>
-										<li><a href="#" class="icon solid fa-heart">28</a></li>
-										<li><a href="#" class="icon solid fa-comment">128</a></li>
-									</ul>
-								</footer>
-							</article>
-
-                        <?php } wp_reset_postdata(); ?>
+                        <ul class="actions pagination">
+                            <li><a href="<?= site_url('/blog/'); ?>" class="button large next">View More</a></li>
+                        </ul>
 
 						<!-- Post -->
-						<!--
+
 							<article class="post">
 								<header>
 									<div class="title">
@@ -367,13 +346,6 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 								</section>
 
 							</article>
-						-->
-
-						<!-- Pagination -->
-							<ul class="actions pagination">
-								<li><a href="" class="disabled button large previous">Previous Page</a></li>
-								<li><a href="#" class="button large next">Next Page</a></li>
-							</ul>
 
 					</div>
 
@@ -402,7 +374,6 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
                         <section>
                             <h3>Portfolio</h3>
                             <div class="mini-posts">
-
 
                                 <!-- Mini Post -->
                                 <article class="mini-post">
@@ -447,13 +418,10 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
                             </div>
                         </section>
 
-
                         <!-- Posts List -->
                         <section>
-
+                            <h3>Inspirations</h3>
                             <ul class="posts">
-                                <h3>Inspirations</h3>
-
                                 <li>
                                     <article>
                                         <header>
@@ -501,7 +469,6 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
                                 </li>
                             </ul>
                         </section>
-
 
 						<!-- Footer -->
 							<?php get_footer(); ?>
