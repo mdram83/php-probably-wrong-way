@@ -6,7 +6,7 @@
 			<li><a <?php if (is_page('about')) echo 'class="current"'; ?> href="<?= site_url('/about/'); ?>">About</a></li>
 			<li><a <?php if (get_post_type() === 'post') echo 'class="current"'; ?> href="<?= site_url('/blog/'); ?>">Blog</a></li>
 			<li><a href="#">Portfolio</a></li>
-            <li><a href="#">Inspirations</a></li>
+            <li><a <?php if (get_post_type() === 'inspiration') echo 'class="current"'; ?> href="<?= site_url('/inspirations/'); ?>">Inspirations</a></li>
 		</ul>
 	</nav>
 	<nav class="main">
@@ -56,7 +56,7 @@
 				</a>
 			</li>
             <li>
-                <a href="#">
+                <a href="<?= site_url('/inspirations/'); ?>">
                     <h3>Inspirations</h3>
                     <p>Get inspired... probably</p>
                 </a>

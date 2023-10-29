@@ -10,6 +10,7 @@ class ThemeSetup
 		add_action('wp_loaded', [$this, 'hideAdminBarForGuestsAndMobile']);
         add_action('wp_head', [$this, 'moveAdminBarToBottom']);
         add_action('wp_enqueue_scripts', [$this, 'loadThemeFiles']);
+		add_action('init', [$this, 'customThemePostTypes']);
     }
 
     public function hideAdminBarForGuestsAndMobile(): void
@@ -44,4 +45,28 @@ class ThemeSetup
 	    add_theme_support('post-thumbnails');
 	    add_image_size('index', 1500, 350, true);
     }
+
+	public function customThemePostTypes(): void
+	{
+		$this->registerInspirationPostType();
+	}
+
+	private function registerInspirationPostType(): void
+	{
+		register_post_type('inspiration', [
+			'supports' => ['title', 'editor', 'thumbnail'],
+			'rewrite' => ['slug' => 'inspirations'],
+			'has_archive' => true,
+			'public' => true,
+			'show_in_rest' => true,
+			'labels' => [
+				'name' => 'Inspirations',
+				'add_new_item' => 'Add New Inspiration',
+				'edit_item' => 'Edit Inspiration',
+				'all_items' => 'All Inspirations',
+				'singular_name' => 'Inspiration',
+			],
+			'menu_icon' => 'dashicons-art',
+		]);
+	}
 }

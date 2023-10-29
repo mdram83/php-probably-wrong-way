@@ -32,7 +32,10 @@
 		?>
 
         <ul class="actions pagination">
-            <li><a href="<?= site_url('/blog/'); ?>" class="button large next">Back to Blog</a></li>
+
+            <?= (get_post_type() === 'post') ? '<li><a href="' . site_url('/blog/') .'" class="button large next">Back to Blog</a></li>' : ''; ?>
+	        <?= (get_post_type() === 'inspiration') ? '<li><a href="' . site_url('/inspirations/') .'" class="button large next">Back to Inspirations</a></li>' : ''; ?>
+
             <li><a href="<?= site_url(); ?>" class="button large next">Home Page</a></li>
         </ul>
 

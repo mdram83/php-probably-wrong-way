@@ -2,9 +2,10 @@
 
 Todos:
 1. Hearts (likes)
-2. Comments (consider if I want it)
-3. Dedicated post types for Portfolio (Page first) and Inspirations
+2. About box text (or excerpt from About page)...
+3. Dedicated post types for Portfolio (Page first)
 4. Test small icons on front-page
+5. Search functionality/pages etc.
 5. Test post with some code snippets for readers
 6. Plugin... - BIGGER TASK
 
@@ -14,8 +15,9 @@ Manual steps required to use php-probably-wrong-way theme and plugins in product
 1. After activating theme go to Appearance, Customize, Site Identity, Site Icon and chose one prepared for site.
 2. Add tagline - short info what is this page about... 'A beginner's programming diary.'
 3. Install plugin - ACF for custom fields and configure it (required subtitle in Pages)
-3.1. 'subtitle' field (100 chars) for Pages and Posts
+3.1. 'subtitle' field (100 chars) for Posts, Pages, Inspirations
 4. Add page 'About' with slug 'about'.
+5. Create and set as default 'Uncategorized' category for posts (if not better is from english default installation)
 
 
 Add proper license information:
