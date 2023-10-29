@@ -1,12 +1,16 @@
 # php-probably-wrong-way
 
 Todos:
-1. Move wp_footer to actual footer when you create it.
+1. How to add posts thumbnails?
+2. change index/front-page
 
 
 Manual steps required to use php-probably-wrong-way theme and plugins in production:
 1. After activating theme go to Appearance, Customize, Site Identity, Site Icon and chose one prepared for site.
 2. Add tagline - short info what is this page about...
+3. Install plugin - ACF for custom fields and configure it (required subtitle in Pages)
+3.1. 'subtitle' field (100 chars) for Pages and Posts
+4. Add page 'About' with slug 'about'.
 
 
 Add proper license information:

@@ -6,15 +6,15 @@ class ThemeSetup
 {
     public function __construct()
     {
-        add_action('wp_loaded', [$this, 'hideAdminBarForGuests']);
+        add_action('wp_loaded', [$this, 'hideAdminBarForGuestsAndMobile']);
         add_action('wp_head', [$this, 'moveAdminBarToBottom']);
         add_action('wp_enqueue_scripts', [$this, 'loadThemeFiles']);
         add_action('after_setup_theme', [$this, 'enableThemeFeatures']);
     }
 
-    public function hideAdminBarForGuests(): void
+    public function hideAdminBarForGuestsAndMobile(): void
     {
-        if (!is_user_logged_in()) {
+        if (!is_user_logged_in() || wp_is_mobile()) {
             show_admin_bar(false);
         }
     }
