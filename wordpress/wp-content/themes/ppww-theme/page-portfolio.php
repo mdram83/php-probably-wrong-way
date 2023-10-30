@@ -38,6 +38,39 @@
 
             PROJECTS LIST
 
+            <section>
+                <div class="mini-posts-portfolio">
+
+	                <?php
+	                $portfolioProjects = new WP_Query([
+		                'posts_per_page' => -1,
+		                'post_type' => 'project',
+		                'meta_query' => [
+			                'relation' => 'AND',
+			                'featured_clause' => [
+				                'key'     => 'featured',
+				                'compare' => 'EXISTS',
+			                ],
+			                'start_date_clause' => [
+				                'key'     => 'start_date',
+				                'compare' => 'EXISTS',
+			                ],
+		                ],
+		                'orderby' => [
+			                'featured_clause' => 'DESC',
+			                'start_date_clause' => 'ASC',
+		                ],
+	                ]);
+	                while ($portfolioProjects->have_posts()) {
+		                $portfolioProjects->the_post();
+		                get_template_part('template-parts/content-portfolio', 'project');
+	                }
+	                wp_reset_postdata();
+	                ?>
+
+                </div>
+            </section>
+
 			<footer>
 				<ul class="actions">
 					<li><a href="<?= site_url(); ?>" class="button large">Back to Home Page</a></li>

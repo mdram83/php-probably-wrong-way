@@ -2730,6 +2730,71 @@ input, select, textarea {
 
 		}
 
+	.mini-posts-portfolio {
+		margin: 0 0 2em 0;
+		display: -moz-flex;
+		display: -webkit-flex;
+		display: -ms-flex;
+		display: flex;
+		-moz-flex-wrap: wrap;
+		-webkit-flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+		width: calc(100% + 2em);
+	}
+
+	.mini-posts-portfolio > * {
+		margin: 2em 2em 0 0;
+		width: calc(33% - 2em);
+	}
+
+	.mini-posts-portfolio > :nth-child(-n + 3) {
+		margin-top: 0;
+	}
+
+	img.mini-posts-portfolio {
+		height: calc(10vw * 1.4);
+		object-fit: cover;
+	}
+
+		@media screen and (max-width: 1280px) {
+
+			.mini-posts-portfolio > * {
+				width: calc(50% - 2em);
+			}
+
+			.mini-posts-portfolio > :nth-child(-n + 3) {
+				margin-top: 2em;
+			}
+
+			.mini-posts-portfolio > :nth-child(-n + 2) {
+				margin-top: 0;
+			}
+
+			img.mini-posts-portfolio {
+				height: calc(10vw * 2);
+			}
+
+		}
+
+		@media screen and (max-width: 640px) {
+
+			.mini-posts-portfolio {
+				display: block;
+				width: 100%;
+			}
+
+			.mini-posts-portfolio > * {
+				margin: 0 0 2em 0;
+				width: 100%;
+			}
+
+			img.mini-posts-portfolio {
+				height: calc(10vw * 4);
+			}
+
+		}
+
 /* Post */
 
 	.post {
