@@ -15,8 +15,6 @@
 
         <ul class="stats">
             <li><?= get_the_category_list(', '); ?></li>
-            <li><a href="#" class="icon solid fa-heart">28</a></li>
-<!--            <li><a href="#" class="icon solid fa-comment">128</a></li>-->
         </ul>
     </footer>
 </article>

@@ -2351,6 +2351,30 @@ input, select, textarea {
 				width: 100%;
 			}
 
+		.image.project {
+			max-width: 40%;
+			float: left;
+			margin: 0 0 3em 0;
+			padding: 0 1.5em 1em 0;
+			top: 0.25em;
+		}
+
+			.image.project img {
+				width: 100%;
+			}
+
+			@media screen and (max-width: 736px) {
+
+				.image.project {
+					margin: 0 0 1.5em 0;
+					padding: 0;
+					max-width: 100%;
+					width: 100%;
+					display: block;
+				}
+
+			}
+
 /* List */
 
 	ol {

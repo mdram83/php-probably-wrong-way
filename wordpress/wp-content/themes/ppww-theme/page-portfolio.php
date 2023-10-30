@@ -36,7 +36,7 @@
 
             <?php the_content(); ?>
 
-            PROJECTS LIST
+            <h3>Projects list</h3>
 
             <section>
                 <div class="mini-posts-portfolio">

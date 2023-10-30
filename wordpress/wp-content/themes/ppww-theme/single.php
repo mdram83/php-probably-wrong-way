@@ -26,7 +26,11 @@
 
 		while (have_posts()) {
 			the_post();
-			get_template_part('template-parts/content-single', 'post');
+            if (get_post_type() === 'project') {
+	            get_template_part('template-parts/content-single', 'project');
+            } else {
+	            get_template_part('template-parts/content-single', 'post');
+            }
 		}
 
 		?>
@@ -35,6 +39,7 @@
 
             <?= (get_post_type() === 'post') ? '<li><a href="' . site_url('/blog/') .'" class="button large next">Back to Blog</a></li>' : ''; ?>
 	        <?= (get_post_type() === 'inspiration') ? '<li><a href="' . site_url('/inspirations/') .'" class="button large next">Back to Inspirations</a></li>' : ''; ?>
+	        <?= (get_post_type() === 'project') ? '<li><a href="' . site_url('/portfolio/') .'" class="button large next">Back to Portfolio</a></li>' : ''; ?>
 
             <li><a href="<?= site_url(); ?>" class="button large next">Home Page</a></li>
         </ul>
