@@ -5,7 +5,7 @@
 		<ul>
 			<li><a <?php if (is_page('about')) echo 'class="current"'; ?> href="<?= site_url('/about/'); ?>">About</a></li>
 			<li><a <?php if (get_post_type() === 'post') echo 'class="current"'; ?> href="<?= site_url('/blog/'); ?>">Blog</a></li>
-			<li><a href="#">Portfolio</a></li>
+			<li><a <?php if (is_page('portfolio')) echo 'class="current"'; ?> href="<?= site_url('/portfolio/'); ?>">Portfolio</a></li>
             <li><a <?php if (get_post_type() === 'inspiration') echo 'class="current"'; ?> href="<?= site_url('/inspirations/'); ?>">Inspirations</a></li>
 		</ul>
 	</nav>
@@ -50,7 +50,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="<?= site_url('/portfolio/'); ?>">
 					<h3>Portfolio</h3>
 					<p>Learn more about my projects</p>
 				</a>

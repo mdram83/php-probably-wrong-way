@@ -49,6 +49,7 @@ class ThemeSetup
 	public function customThemePostTypes(): void
 	{
 		$this->registerInspirationPostType();
+		$this->registerProjectPostType();
 	}
 
 	private function registerInspirationPostType(): void
@@ -66,7 +67,24 @@ class ThemeSetup
 				'all_items' => 'All Inspirations',
 				'singular_name' => 'Inspiration',
 			],
-			'menu_icon' => 'dashicons-art',
+			'menu_icon' => 'dashicons-heart',
+		]);
+	}
+
+	private function registerProjectPostType(): void
+	{
+		register_post_type('project', [
+			'supports' => ['title', 'editor', 'thumbnail'],
+			'public' => true,
+			'show_in_rest' => true,
+			'labels' => [
+				'name' => 'Projects',
+				'add_new_item' => 'Add New Project',
+				'edit_item' => 'Edit Project',
+				'all_items' => 'All Projects',
+				'singular_name' => 'Projects',
+			],
+			'menu_icon' => 'dashicons-format-gallery',
 		]);
 	}
 }

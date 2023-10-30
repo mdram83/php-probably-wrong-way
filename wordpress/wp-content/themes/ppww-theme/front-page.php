@@ -35,7 +35,7 @@
                             <li><a href="<?= site_url('/blog/'); ?>" class="button large next">See More</a></li>
                         </ul>
 
-						<!-- Post -->
+						<!-- Sample Post Explaining Template Styles -->
 
 							<article class="post">
 								<header>
@@ -375,45 +375,36 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
                             <h3>Portfolio</h3>
                             <div class="mini-posts">
 
-                                <!-- Mini Post -->
-                                <article class="mini-post">
-                                    <header>
-                                        <h3><a href="single.html">Vitae sed condimentum</a></h3>
-                                        <time class="published" datetime="2015-10-20">October 20, 2015</time>
-                                        <a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
-                                    </header>
-                                    <a href="single.html" class="image"><img src="images/pic04.jpg" alt="" /></a>
-                                </article>
+	                            <?php
+                                    $homepageProjects = new WP_Query([
+                                        'posts_per_page' => 3,
+                                        'post_type' => 'project',
+                                        'meta_query' => [
+                                            'relation' => 'AND',
+                                            'featured_clause' => [
+                                                'key'     => 'featured',
+                                                'compare' => 'EXISTS',
+                                            ],
+                                            'start_date_clause' => [
+                                                'key'     => 'start_date',
+                                                'compare' => 'EXISTS',
+                                            ],
+                                        ],
+                                        'orderby' => [
+                                            'featured_clause' => 'DESC',
+                                            'start_date_clause' => 'ASC',
+                                        ],
+                                    ]);
+                                    while ($homepageProjects->have_posts()) {
+                                        $homepageProjects->the_post();
+                                        get_template_part('template-parts/content-frontindex', 'project');
+                                    }
+                                    wp_reset_postdata();
+	                            ?>
 
-                                <!-- Mini Post -->
-                                <article class="mini-post">
-                                    <header>
-                                        <h3><a href="single.html">Rutrum neque accumsan</a></h3>
-                                        <time class="published" datetime="2015-10-19">October 19, 2015</time>
-                                        <a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
-                                    </header>
-                                    <a href="single.html" class="image"><img src="images/pic05.jpg" alt="" /></a>
-                                </article>
-
-                                <!-- Mini Post -->
-                                <article class="mini-post">
-                                    <header>
-                                        <h3><a href="single.html">Odio congue mattis</a></h3>
-                                        <time class="published" datetime="2015-10-18">October 18, 2015</time>
-                                        <a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
-                                    </header>
-                                    <a href="single.html" class="image"><img src="images/pic06.jpg" alt="" /></a>
-                                </article>
-
-                                <!-- Mini Post -->
-                                <article class="mini-post">
-                                    <header>
-                                        <h3><a href="single.html">Enim nisl veroeros</a></h3>
-                                        <time class="published" datetime="2015-10-17">October 17, 2015</time>
-                                        <a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
-                                    </header>
-                                    <a href="single.html" class="image"><img src="images/pic07.jpg" alt="" /></a>
-                                </article>
+                                <ul class="actions">
+                                    <li><a href="<?= site_url('/portfolio/'); ?>" class="button">See All</a></li>
+                                </ul>
 
                             </div>
                         </section>
