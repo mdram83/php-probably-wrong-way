@@ -11,6 +11,7 @@ class ThemeSetup
         add_action('wp_head', [$this, 'moveAdminBarToBottom']);
         add_action('wp_enqueue_scripts', [$this, 'loadThemeFiles']);
 		add_action('init', [$this, 'customThemePostTypes']);
+		add_action('init', [$this, 'postTypeSupport']);
     }
 
     public function hideAdminBarForGuestsAndMobile(): void
@@ -86,5 +87,10 @@ class ThemeSetup
 			],
 			'menu_icon' => 'dashicons-format-gallery',
 		]);
+	}
+
+	public function postTypeSupport(): void
+	{
+		add_post_type_support('page', 'excerpt');
 	}
 }

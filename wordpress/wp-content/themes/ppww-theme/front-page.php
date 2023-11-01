@@ -50,9 +50,12 @@
 							</section>
 
                         <!-- About -->
+                        <?php
+                            $aboutPage = get_page_by_path('/about/', OBJECT, 'page');
+                        ?>
                         <section class="blurb">
                             <h2>About</h2>
-                            <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod amet placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at phasellus sed ultricies.</p>
+                            <p><?= get_the_excerpt($aboutPage) ?? wp_trim_words(get_the_content(null, false, $aboutPage), 80); ?></p>
                             <ul class="actions">
                                 <li><a href="<?= site_url('/about/'); ?>" class="button">Learn More</a></li>
                             </ul>
