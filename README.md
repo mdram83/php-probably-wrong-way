@@ -1,9 +1,11 @@
 # php-probably-wrong-way
 
 Todos:
-5. Search functionality/pages etc.
+5. Search fire up from search on frontend
 5. Test post with some code snippets for readers 
 6. Add some 404 page
+7. Organize repeated html in template_parts
+8. Organize repeated functions in dedicated Classes/Methods
 6. GPT Plugin
 
 

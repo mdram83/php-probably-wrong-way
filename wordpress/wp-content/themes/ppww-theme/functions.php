@@ -5,10 +5,7 @@ require get_theme_file_path('/inc/ThemeSetup.php');
 function ppwwPaginationLinks(): array
 {
 	$links = (paginate_links(['type' => 'array', 'prev_text' => 'prev', 'next_text' => 'next']));
-
-	$filtered = array_filter($links ?? [], function($value) {
-		return (strip_tags($value) === 'prev' || strip_tags($value) === 'next');
-	});
+	$filtered = array_filter($links ?? [], fn($value) => (strip_tags($value) === 'prev' || strip_tags($value) === 'next'));
 
 	$pageLinks = [
 		'prev' => null,
