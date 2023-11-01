@@ -1,7 +1,8 @@
 # php-probably-wrong-way
 
 Todos:
-5. Test post with some code snippets for readers 
+5. Add related project to blog posts (and display it in footer?)
+6. Display related blog posts in single project
 6. Add some 404 page
 7. Organize repeated html in template_parts
 8. Organize repeated functions in dedicated Classes/Methods
