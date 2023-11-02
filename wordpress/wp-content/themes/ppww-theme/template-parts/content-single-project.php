@@ -56,4 +56,26 @@
         </table>
     </div>
 
+    <?php
+    $relatedBlogPosts = get_posts( [
+	    'post_type' => 'post',
+	    'posts_per_page' => -1,
+	    'meta_query' => [
+		    [
+			    'key' => 'related_project',
+			    'value' => '"' . get_the_ID() . '"',
+			    'compare' => 'LIKE',
+		    ]
+	    ]
+    ]);
+
+    if($relatedBlogPosts) { ?>
+        <h3>Related blog posts</h3>
+        <ul>
+			<?php foreach($relatedBlogPosts as $relatedBlogPost) { ?>
+                <li><a href="<?= get_the_permalink($relatedBlogPost); ?>"><?= get_the_title($relatedBlogPost); ?></a></li>
+			<?php } ?>
+        </ul>
+	<?php } ?>
+
 </article>
