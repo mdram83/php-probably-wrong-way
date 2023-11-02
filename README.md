@@ -1,8 +1,6 @@
 # php-probably-wrong-way
 
 Todos:
-7. Organize repeated html in template_parts
-8. Organize repeated functions in dedicated Classes/Methods
 6. GPT Plugin
 
 

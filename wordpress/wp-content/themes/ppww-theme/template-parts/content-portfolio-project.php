@@ -1,7 +1,6 @@
 <article class="mini-post">
     <header>
-        <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-        <time class="published" datetime="<?= get_field('start_date'); ?>"><?= (new DateTime(get_field('start_date')))->format('F, Y'); ?></time>
+	    <?php get_template_part('template-parts/project-parts/article-header-h3-title-dates'); ?>
 
         <ul class="actions small">
             <li><a href="<?php the_permalink(); ?>" class="button small">Learn More</a></li>

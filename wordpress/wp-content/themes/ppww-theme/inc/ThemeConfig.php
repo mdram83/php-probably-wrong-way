@@ -7,6 +7,7 @@ class ThemeConfig
 	private static int $homepagePostsPerPage = 3;
 	private static int $homepageProjectsPerPage = 3;
 	private static int $homepageInspirationsPerPage = 2;
+	private static int $contentToExcerptWordsCount = 80;
 	private static array $projectsQueryParams = [
 		'post_type' => 'project',
 		'meta_query' => [
@@ -44,5 +45,10 @@ class ThemeConfig
 	public static function getProjectsQueryParams(): array
 	{
 		return static::$projectsQueryParams;
+	}
+
+	public static function getContentToExcerptWordsCount(): int
+	{
+		return static::$contentToExcerptWordsCount;
 	}
 }
