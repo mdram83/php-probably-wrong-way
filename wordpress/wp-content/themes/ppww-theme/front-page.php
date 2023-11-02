@@ -16,12 +16,11 @@
         <div id="main">
 
             <?php
-                $homepagePosts = new WP_Query(['posts_per_page' => \PhpProbablyWrongWay\ThemeConfig::getHomepagePostsPerPage()]);
-                while ($homepagePosts->have_posts()) {
-                    $homepagePosts->the_post();
-                    get_template_part('template-parts/content-index', 'post');
-                }
-                wp_reset_postdata();
+            \PhpProbablyWrongWay\ThemeHelper::loopQueryResultsThroughTemplatePart(
+	            ['posts_per_page' => \PhpProbablyWrongWay\ThemeConfig::getHomepagePostsPerPage()],
+                'template-parts/content-index',
+                'post'
+            );
             ?>
 
             <ul class="actions pagination">
@@ -54,14 +53,13 @@
                 <div class="mini-posts">
 
                     <?php
-                    $homepageProjects = new WP_Query(array_merge([
-                        'posts_per_page' => \PhpProbablyWrongWay\ThemeConfig::getHomepageProjectsPerPage(),
-                    ], \PhpProbablyWrongWay\ThemeConfig::getProjectsQueryParams()));
-                    while ($homepageProjects->have_posts()) {
-                        $homepageProjects->the_post();
-                        get_template_part('template-parts/content-frontindex', 'project');
-                    }
-                    wp_reset_postdata();
+                    \PhpProbablyWrongWay\ThemeHelper::loopQueryResultsThroughTemplatePart(
+	                    array_merge([
+		                    'posts_per_page' => \PhpProbablyWrongWay\ThemeConfig::getHomepageProjectsPerPage(),
+	                    ], \PhpProbablyWrongWay\ThemeConfig::getProjectsQueryParams()),
+                        'template-parts/content-frontindex',
+                        'project'
+                    );
                     ?>
 
                     <ul class="actions">
@@ -77,15 +75,14 @@
                 <ul class="posts">
 
                     <?php
-                    $homepageInspirations =new WP_Query([
-                        'posts_per_page' => \PhpProbablyWrongWay\ThemeConfig::getHomepageInspirationsPerPage(),
-                        'post_type' => 'inspiration',
-                    ]);
-                    while ($homepageInspirations->have_posts()) {
-                        $homepageInspirations->the_post();
-                        get_template_part('template-parts/content-frontindex', 'inspiration');
-                    }
-                    wp_reset_postdata();
+                    \PhpProbablyWrongWay\ThemeHelper::loopQueryResultsThroughTemplatePart(
+	                    [
+                            'posts_per_page' => \PhpProbablyWrongWay\ThemeConfig::getHomepageInspirationsPerPage(),
+                            'post_type' => 'inspiration',
+                        ],
+                        'template-parts/content-frontindex',
+                        'inspiration'
+                    );
                     ?>
 
                 </ul>

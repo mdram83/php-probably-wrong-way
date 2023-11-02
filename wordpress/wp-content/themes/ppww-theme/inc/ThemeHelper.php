@@ -32,4 +32,17 @@ class ThemeHelper
 		}
 		return $relatedProjects;
 	}
+
+	public static function loopQueryResultsThroughTemplatePart(
+		array $queryParams,
+		string $partSlug,
+		string $partName = null): void
+	{
+		$WPQuery =new \WP_Query($queryParams);
+		while ($WPQuery->have_posts()) {
+			$WPQuery->the_post();
+			get_template_part($partSlug, $partName);
+		}
+		wp_reset_postdata();
+	}
 }

@@ -27,7 +27,9 @@
                 </ul>
 
             <?php } else { ?>
+
                 <h2>Search results for: <i><?= $searchTerm; ?></i></h2>
+
             <?php
                 while (have_posts()) {
                     the_post();

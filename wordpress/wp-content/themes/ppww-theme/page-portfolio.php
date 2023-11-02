@@ -35,14 +35,13 @@
                     <div class="mini-posts-portfolio">
 
                         <?php
-                        $portfolioProjects = new WP_Query(array_merge([
-                            'posts_per_page' => -1,
-                        ], \PhpProbablyWrongWay\ThemeConfig::getProjectsQueryParams()));
-                        while ($portfolioProjects->have_posts()) {
-                            $portfolioProjects->the_post();
-                            get_template_part('template-parts/content-portfolio', 'project');
-                        }
-                        wp_reset_postdata();
+                        \PhpProbablyWrongWay\ThemeHelper::loopQueryResultsThroughTemplatePart(
+	                        array_merge([
+		                        'posts_per_page' => -1,
+	                        ], \PhpProbablyWrongWay\ThemeConfig::getProjectsQueryParams()),
+                            'template-parts/content-portfolio',
+                            'project'
+                        );
                         ?>
 
                     </div>
