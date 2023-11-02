@@ -20,6 +20,7 @@ Manual steps required to use php-probably-wrong-way theme and plugins in product
 7. Add Taxonomy for 'Technologies' (single 'technology') (to be used with Project post type) and Add Techonologies entries (Projects menu)
 8. Add Taxonomy for 'Project Statuses' (single 'project-status') (to be used with Project post type) and Add Statuses entries (Projects menu)
 9. Add following ACF custom fields for Projects: production_link, repository_link, *start_date (Y-m-d), end_date (Y-m-d), *featured (Checkbox 1, 0 default 0). * - mandatory
+10. Add ACF custom group/field for Posts only: related_project (reference to Published, Projects, non bi-directional, non mandatory).
 5. Create and set as default 'Uncategorized' category for posts (if not better is from english default installation)
 
 
