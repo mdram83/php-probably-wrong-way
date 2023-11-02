@@ -33,7 +33,7 @@
         <section id="sidebar">
 
             <!-- Intro -->
-	        <?php get_template_part('template-parts/homepage-section', 'intro'); ?>
+	        <?php get_template_part('template-parts/sidebar-section-intro'); ?>
 
             <!-- About -->
             <?php
@@ -57,7 +57,7 @@
 	                    array_merge([
 		                    'posts_per_page' => \PhpProbablyWrongWay\ThemeConfig::getHomepageProjectsPerPage(),
 	                    ], \PhpProbablyWrongWay\ThemeConfig::getProjectsQueryParams()),
-                        'template-parts/content-frontindex',
+                        'template-parts/front-page/content-index',
                         'project'
                     );
                     ?>
@@ -80,7 +80,7 @@
                             'posts_per_page' => \PhpProbablyWrongWay\ThemeConfig::getHomepageInspirationsPerPage(),
                             'post_type' => 'inspiration',
                         ],
-                        'template-parts/content-frontindex',
+                        'template-parts/front-page/content-index',
                         'inspiration'
                     );
                     ?>

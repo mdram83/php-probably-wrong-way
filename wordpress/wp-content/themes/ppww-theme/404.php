@@ -32,7 +32,7 @@
         <section id="sidebar">
 
             <!-- Intro -->
-	        <?php get_template_part('template-parts/homepage-section', 'intro'); ?>
+	        <?php get_template_part('template-parts/sidebar-section-intro'); ?>
 
             <!-- Footer -->
             <?php get_footer(); ?>

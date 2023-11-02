@@ -1,9 +1,6 @@
 <article class="post">
     <header>
-        <div class="title">
-            <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-            <p><?= get_field('subtitle'); ?></p>
-        </div>
+	    <?php get_template_part('template-parts/post-parts/article-header-h2-title-subtitle'); ?>
     </header>
 
     <div class="row gtr-uniform">

@@ -20,19 +20,13 @@
 
             <article class="post">
                 <header>
-                    <div class="title">
-                        <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-                        <p><?= get_field('subtitle'); ?></p>
-                    </div>
+                    <?php get_template_part('template-parts/post-parts/article-header-h2-title-subtitle'); ?>
                 </header>
-                <a href="<?php the_permalink(); ?>" class="image featured"><img src="" alt="" /></a>
 
                 <?php the_content(); ?>
 
                 <footer>
-                    <ul class="actions">
-                        <li><a href="<?= site_url(); ?>" class="button large">Back to Home Page</a></li>
-                    </ul>
+	                <?php get_template_part('template-parts/page-parts/article-footer-actions'); ?>
                 </footer>
             </article>
 
