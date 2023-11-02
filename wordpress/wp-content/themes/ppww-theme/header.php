@@ -67,7 +67,9 @@
 	<!-- Actions -->
 	<section>
 		<ul class="actions stacked">
-			<li><a href="#" class="button large fit">Log In</a></li>
+            <?php if (!is_user_logged_in()) { ?>
+            <li><a href="<?= site_url('/login/'); ?>" class="button large fit">Log In</a></li>
+            <?php } ?>
 		</ul>
 	</section>
 

@@ -1,60 +1,47 @@
-<!DOCTYPE HTML>
-<!--
-	Future Imperfect by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+<?php get_template_part('template-parts/html-doctype'); ?>
+
 <html <?php language_attributes(); ?>>
-	<head>
-		<meta charset="<?php bloginfo('charset'); ?>" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <?php wp_head(); ?>
-	</head>
-	<body class="is-preload">
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+<?php get_template_part('template-parts/html-head'); ?>
 
-				<!-- Header -->
-				<!-- Menu -->
-					<?php get_header(); ?>
+<body class="is-preload">
 
-				<!-- Main -->
-					<div id="main">
+    <!-- Wrapper -->
+    <div id="wrapper">
 
-                        <article class="post">
-                            <div style="text-align: center;">
-                            <h2>404 | Not Found</h2>
-                            <p>Page you are looking for is not available</p>
-                            </div>
-                        </article>
+        <!-- Header/Menu -->
+        <?php get_header(); ?>
 
-                        <ul class="actions pagination">
-                            <li><a href="<?= site_url(''); ?>" class="button large next">Home Page</a></li>
-                        </ul>
+        <!-- Main -->
+        <div id="main">
 
-					</div>
+            <article class="post">
+                <div style="text-align: center;">
+                    <h2>404 | Not Found</h2>
+                    <p>Page you are looking for is not available</p>
+                </div>
+            </article>
 
-				<!-- Sidebar -->
-					<section id="sidebar">
+            <ul class="actions pagination">
+                <li><a href="<?= site_url(''); ?>" class="button large next">Home Page</a></li>
+            </ul>
 
-						<!-- Intro -->
-							<section id="intro">
-								<a href="<?= site_url(); ?>" class="logo"><img src="<?= get_theme_file_uri('/images/logo.png'); ?>" alt="" /></a>
-								<header>
-									<h2><?php bloginfo('name'); ?></h2>
-									<p><?php bloginfo('description'); ?></p>
-								</header>
-							</section>
+        </div>
 
-						<!-- Footer -->
-							<?php get_footer(); ?>
+        <!-- Sidebar -->
+        <section id="sidebar">
 
-					</section>
+            <!-- Intro -->
+	        <?php get_template_part('template-parts/homepage-section', 'intro'); ?>
 
-			</div>
+            <!-- Footer -->
+            <?php get_footer(); ?>
 
-    <?php wp_footer(); ?>
+        </section>
 
-	</body>
+    </div>
+
+<?php wp_footer(); ?>
+
+</body>
 </html>

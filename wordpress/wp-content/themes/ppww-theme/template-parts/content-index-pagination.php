@@ -1,4 +1,8 @@
-<?php $ppwwPaginationLinks = ppwwPaginationLinks(); ?>
+<?php
+
+$ppwwPaginationLinks = \PhpProbablyWrongWay\ThemeHelper::getPaginationLinks();
+
+?>
 
 <ul class="actions pagination">
     <li><a href="<?= $ppwwPaginationLinks['prev']; ?>" class="button large previous <?= $ppwwPaginationLinks['prev'] ?? 'disabled'; ?>">Previous Page</a></li>
