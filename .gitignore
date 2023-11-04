@@ -7,6 +7,10 @@ wordpress/*
 
 wordpress/wp-content/*
 !wordpress/wp-content/themes/
+!wordpress/wp-content/plugins/
 
 wordpress/wp-content/themes/*
 !wordpress/wp-content/themes/ppww-theme/
+
+wordpress/wp-content/plugins/*
+!wordpress/wp-content/plugins/ppww-chatgpt-editor-plugin/
