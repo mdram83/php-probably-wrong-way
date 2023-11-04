@@ -96,7 +96,8 @@ wp.blocks.registerBlockType('ppww/ppww-chatgpt-editor-plugin', {
   category: 'common',
   attributes: {
     messages: {
-      type: 'array'
+      type: 'array',
+      default: []
     }
   },
   edit: EditComponent,
@@ -105,7 +106,44 @@ wp.blocks.registerBlockType('ppww/ppww-chatgpt-editor-plugin', {
   }
 });
 function EditComponent(props) {
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", null, "ChatGPT Test from Editor");
+  function sendQuestion(event) {
+    const questionElement = event.target.parentNode.querySelector("input[name='question']");
+    const question = questionElement.value.trim();
+    if (question === '') {
+      return;
+    }
+    alert('Sending question');
+    const answer = {
+      'role': 'assistant',
+      'content': 'This is an answer to your question: ' + question
+    };
+    // TODO add error handling later
+
+    questionElement.value = '';
+    updateMessages(question, answer);
+  }
+  function updateMessages(question, answer) {
+    props.setAttributes({
+      messages: props.attributes.messages.concat([{
+        'role': 'user',
+        'content': question
+      }, answer])
+    });
+  }
+
+  // console.log(props.attributes);
+
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, props.attributes.messages.map(element => {
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+      className: element.role
+    }, element.content);
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+    type: "text",
+    name: "question",
+    placeholder: "Write message you want to send to ChatGPT"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    onClick: sendQuestion
+  }, "Send"));
 }
 })();
 
