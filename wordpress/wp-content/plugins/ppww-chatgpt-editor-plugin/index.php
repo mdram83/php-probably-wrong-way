@@ -12,3 +12,9 @@
  * Text Domain:       ppww
  * Domain Path:       /languages
  */
+
+if (!defined('ABSPATH')) exit();
+
+require plugin_dir_path(__FILE__) . 'inc/PluginSetup.php';
+
+new \PhpProbablyWrongWay\PluginSetup(plugin_dir_url(__FILE__));

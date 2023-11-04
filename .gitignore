@@ -14,3 +14,4 @@ wordpress/wp-content/themes/*
 
 wordpress/wp-content/plugins/*
 !wordpress/wp-content/plugins/ppww-chatgpt-editor-plugin/
+wordpress/wp-content/plugins/ppww-chatgpt-editor-plugin/node_modules
