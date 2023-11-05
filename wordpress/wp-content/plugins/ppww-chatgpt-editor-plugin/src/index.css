@@ -1,0 +1,44 @@
+.ppww-chatgpt-editor-block {
+    padding: 20px;
+    border-radius: 0.5em;
+    border: 1px solid #2ebaae;
+    background-color: #f4f4f4;
+}
+
+.ppww-chatgpt-editor-block-message-user {
+    margin-left: auto;
+    margin-right: 0;
+    padding: 0.5em 1em;
+    width: fit-content;
+    text-align: end;
+    border-radius: 1em;
+    border: 1px solid #0f5fb7;
+    background-color: #0f5fb7;
+    color: #ffffff;
+}
+
+.ppww-chatgpt-editor-block-message-assistant {
+    margin-left: 0;
+    margin-right: auto;
+    padding: 0.5em 1em;
+    width: fit-content;
+    text-align: start;
+    border-radius: 1em;
+    border: 1px solid #cccccc;
+    background-color: #cccccc;
+}
+
+.ppww-chatgpt-editor-block-message-assistant:last-of-type {
+    margin-bottom: 2em;
+}
+
+.ppww-chatgpt-editor-block-button {
+    position: relative;
+    bottom: -4px;
+    background: #0f5fb7;
+    color: #ffffff;
+    outline: 1px solid transparent;
+    text-decoration: none;
+    text-shadow: none;
+    white-space: nowrap;
+}

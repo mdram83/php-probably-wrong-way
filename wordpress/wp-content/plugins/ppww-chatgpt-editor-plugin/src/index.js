@@ -1,13 +1,18 @@
+import './index.css';
+import {TextControl, Button, Flex, FlexBlock, FlexItem} from '@wordpress/components';
+
+// TODO add function to disable post save/update if block has no received answers.
+
 wp.blocks.registerBlockType('ppww/ppww-chatgpt-editor-plugin', {
-    title: 'ChatGPT Assistant',
-    icon: 'smiley',
+    title: 'ChatGPT Conversation',
+    icon: 'format-status',
     category: 'common',
     attributes: {
         messages: {type: 'array', default: []},
     },
     edit: EditComponent,
     save: function() {
-        return wp.element.createElement('h3', null, 'ChatGPT Test from Frontend');
+        return null;
     },
 });
 
@@ -33,6 +38,9 @@ function EditComponent(props) {
 
 
     function updateMessages(question, answer) {
+
+        // TODO adjust below format to use same format for both question and asnwer and maybe directly what's coming from api call?
+
         props.setAttributes({messages: props.attributes.messages.concat([
             {
                 'role': 'user',
@@ -45,12 +53,18 @@ function EditComponent(props) {
     // console.log(props.attributes);
 
     return (
-        <div>
+        <div className="ppww-chatgpt-editor-block">
             {props.attributes.messages.map((element) => {
-                return <p className={element.role}>{element.content}</p>;
+                return <p className={'ppww-chatgpt-editor-block-message-' + element.role}>{element.content}</p>;
             })}
-            <input type="text" name="question" placeholder="Write message you want to send to ChatGPT" />
-            <button onClick={sendQuestion}>Send</button>
+            <Flex>
+                <FlexBlock>
+                    <TextControl name="question" label="Next question for ChatGPT" placeholder="Your next question" />
+                </FlexBlock>
+                <FlexItem>
+                    <Button className="ppww-chatgpt-editor-block-button" onClick={sendQuestion}>Send Question</Button>
+                </FlexItem>
+            </Flex>
         </div>
     );
 }

@@ -2,6 +2,18 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/index.css":
+/*!***********************!*\
+  !*** ./src/index.css ***!
+  \***********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "react":
 /*!************************!*\
   !*** external "React" ***!
@@ -9,6 +21,16 @@
 /***/ ((module) => {
 
 module.exports = window["React"];
+
+/***/ }),
+
+/***/ "@wordpress/components":
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["components"];
 
 /***/ })
 
@@ -89,10 +111,18 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.css */ "./src/index.css");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+// TODO add function to disable post save/update if block has no received answers.
 
 wp.blocks.registerBlockType('ppww/ppww-chatgpt-editor-plugin', {
-  title: 'ChatGPT Assistant',
-  icon: 'smiley',
+  title: 'ChatGPT Conversation',
+  icon: 'format-status',
   category: 'common',
   attributes: {
     messages: {
@@ -102,7 +132,7 @@ wp.blocks.registerBlockType('ppww/ppww-chatgpt-editor-plugin', {
   },
   edit: EditComponent,
   save: function () {
-    return wp.element.createElement('h3', null, 'ChatGPT Test from Frontend');
+    return null;
   }
 });
 function EditComponent(props) {
@@ -123,6 +153,8 @@ function EditComponent(props) {
     updateMessages(question, answer);
   }
   function updateMessages(question, answer) {
+    // TODO adjust below format to use same format for both question and asnwer and maybe directly what's coming from api call?
+
     props.setAttributes({
       messages: props.attributes.messages.concat([{
         'role': 'user',
@@ -133,17 +165,20 @@ function EditComponent(props) {
 
   // console.log(props.attributes);
 
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, props.attributes.messages.map(element => {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "ppww-chatgpt-editor-block"
+  }, props.attributes.messages.map(element => {
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-      className: element.role
+      className: 'ppww-chatgpt-editor-block-message-' + element.role
     }, element.content);
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-    type: "text",
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Flex, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexBlock, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
     name: "question",
-    placeholder: "Write message you want to send to ChatGPT"
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    label: "Next question for ChatGPT",
+    placeholder: "Your next question"
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    className: "ppww-chatgpt-editor-block-button",
     onClick: sendQuestion
-  }, "Send"));
+  }, "Send Question"))));
 }
 })();
 
