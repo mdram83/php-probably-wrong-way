@@ -16,5 +16,8 @@
 if (!defined('ABSPATH')) exit();
 
 require plugin_dir_path(__FILE__) . 'inc/PluginSetup.php';
+require plugin_dir_path(__FILE__) . 'inc/PluginConfig.php';
+require plugin_dir_path(__FILE__) . 'inc/PluginRestApiHandler.php';
 
 new \PhpProbablyWrongWay\PluginSetup(plugin_dir_url(__FILE__));
+new \PhpProbablyWrongWay\PluginRestApiHandler();

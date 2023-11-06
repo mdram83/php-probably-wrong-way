@@ -1,4 +1,5 @@
 import './index.css';
+import axios from 'axios';
 import {TextControl, Button, Flex, FlexBlock, FlexItem} from '@wordpress/components';
 
 // TODO add function to disable post save/update if block has no received answers.
@@ -18,24 +19,45 @@ wp.blocks.registerBlockType('ppww/ppww-chatgpt-editor-plugin', {
 
 function EditComponent(props) {
 
-    function sendQuestion(event) {
-        const questionElement = event.target.parentNode.querySelector("input[name='question']");
-        const question = questionElement.value.trim();
+    function getQuestionElement() {
+        return document.querySelector("input[id='chatgpt-question']");
+    }
+
+    function getQuestionContent() {
+        return getQuestionElement().value.trim();
+    }
+
+    function sendQuestion() {
+        const questionElement = getQuestionElement();
+        const question = getQuestionContent();
         if (question === '') {
             return;
         }
 
-        alert('Sending question');
-        const answer = {
-            'role': 'assistant',
-            'content': 'This is an answer to your question: ' + question,
-        };
-        // TODO add error handling later
+        sendApiCall(question);
+        // const answer = {
+        //     'role': 'assistant',
+        //     'content': 'This is an answer to your question: ' + question,
+        // };
 
         questionElement.value = '';
-        updateMessages(question, answer);
+        // updateMessages(question, answer);
     }
 
+    function sendApiCall(question) {
+        const data = {
+            question: question
+        };
+        axios.defaults.headers.common["X-WP-Nonce"] = ppwwChatgptEditorPluginData.nonce;
+        alert('Sending question: ' + data);
+        axios.get(ppwwChatgptEditorPluginData.rootUrl + '/wp-json/ppww-chatgpt/v1/chat/', data)
+            .then(response => {
+                updateMessages(question, response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
 
     function updateMessages(question, answer) {
 
@@ -59,7 +81,7 @@ function EditComponent(props) {
             })}
             <Flex>
                 <FlexBlock>
-                    <TextControl name="question" label="Next question for ChatGPT" placeholder="Your next question" />
+                    <TextControl id="chatgpt-question" label="Next question for ChatGPT" placeholder="Your next question" onChange={() => null}/>
                 </FlexBlock>
                 <FlexItem>
                     <Button className="ppww-chatgpt-editor-block-button" onClick={sendQuestion}>Send Question</Button>

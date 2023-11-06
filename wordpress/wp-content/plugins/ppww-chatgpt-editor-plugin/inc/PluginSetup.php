@@ -26,6 +26,11 @@ class PluginSetup
 				'render_callback' => [$this, 'renderCallback'],
 			]
 		);
+
+		wp_localize_script('chatgpt-block-script', 'ppwwChatgptEditorPluginData', [
+			'rootUrl' => get_site_url(),
+			'nonce' => wp_create_nonce('wp_rest'),
+		]);
 	}
 
 	public function renderCallback($attributes): string
