@@ -12,15 +12,13 @@ wp.blocks.registerBlockType('ppww/ppww-chatgpt-editor-plugin', {
         messages: {type: 'array', default: []},
     },
     edit: EditComponent,
-    save: function() {
-        return null;
-    },
+    save: () => null,
 });
 
 function EditComponent(props) {
 
     function getQuestionElement() {
-        return document.querySelector("input[id='chatgpt-question']");
+        return document.querySelector("input[id='chatgpt-question']"); // TODO change to parent as this will allow to only one chat per html document
     }
 
     function getQuestionContent() {
@@ -50,8 +48,9 @@ function EditComponent(props) {
         };
         axios.defaults.headers.common["X-WP-Nonce"] = ppwwChatgptEditorPluginData.nonce;
         alert('Sending question: ' + data);
-        axios.get(ppwwChatgptEditorPluginData.rootUrl + '/wp-json/ppww-chatgpt/v1/chat/', data)
+        axios.post(ppwwChatgptEditorPluginData.rootUrl + '/wp-json/ppww-chatgpt/v1/chat/', data)
             .then(response => {
+                console.log(response.data);
                 updateMessages(question, response.data);
             })
             .catch(error => {

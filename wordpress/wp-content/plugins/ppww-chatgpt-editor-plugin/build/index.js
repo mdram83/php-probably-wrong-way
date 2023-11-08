@@ -2291,14 +2291,13 @@ wp.blocks.registerBlockType('ppww/ppww-chatgpt-editor-plugin', {
     }
   },
   edit: EditComponent,
-  save: function () {
-    return null;
-  }
+  save: () => null
 });
 function EditComponent(props) {
   function getQuestionElement() {
-    return document.querySelector("input[id='chatgpt-question']");
+    return document.querySelector("input[id='chatgpt-question']"); // TODO change to parent as this will allow to only one chat per html document
   }
+
   function getQuestionContent() {
     return getQuestionElement().value.trim();
   }
@@ -2324,7 +2323,8 @@ function EditComponent(props) {
     };
     (axios__WEBPACK_IMPORTED_MODULE_2___default().defaults).headers.common["X-WP-Nonce"] = ppwwChatgptEditorPluginData.nonce;
     alert('Sending question: ' + data);
-    axios__WEBPACK_IMPORTED_MODULE_2___default().get(ppwwChatgptEditorPluginData.rootUrl + '/wp-json/ppww-chatgpt/v1/chat/', data).then(response => {
+    axios__WEBPACK_IMPORTED_MODULE_2___default().post(ppwwChatgptEditorPluginData.rootUrl + '/wp-json/ppww-chatgpt/v1/chat/', data).then(response => {
+      console.log(response.data);
       updateMessages(question, response.data);
     }).catch(error => {
       console.log(error);

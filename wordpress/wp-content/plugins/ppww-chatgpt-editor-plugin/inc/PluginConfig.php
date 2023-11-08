@@ -15,7 +15,7 @@ class PluginConfig
 
 	public static function getChatGptApiKey(): string
 	{
-		return 'testKey'; // TODO read from ENV or wp-config
+		return $_ENV['CHAT_GPT_API_KEY'] ?? '';
 	}
 
 	public static function getChatGptApiModel(): string
