@@ -48,5 +48,16 @@
     white-space: nowrap;
 }
 
+.ppww-chatgpt-editor-block-error-message {
+    display: none;
+    margin-top: 1em;
+    padding: 0.5em 1em;
+    border-radius: 0.25em;
+    border: 1px solid #aa0000;
+    background-color: #ffcccc;
+    color: #aa0000;
+    cursor: pointer;
+}
+
 
 /*# sourceMappingURL=index.css.map*/

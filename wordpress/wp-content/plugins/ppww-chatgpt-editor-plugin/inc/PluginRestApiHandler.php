@@ -29,10 +29,16 @@ class PluginRestApiHandler
 		$response = $this->getResponse($requestBody);
 
 		if (is_wp_error($response)) {
-			return $response;
+			wp_send_json_error(null, 502);
 		}
 
-		return $this->prepareResponseBody($response);
+		$responseBody = $this->prepareResponseBody($response);
+
+		if ($this->isChatGptError($responseBody)) {
+			wp_send_json_error(['response' => $responseBody], 502);
+		}
+
+		return $responseBody;
 
 //		return [
 //			'role' => 'assistant',
@@ -62,7 +68,7 @@ class PluginRestApiHandler
 		$endpoint = PluginConfig::getChatGptApiEndpoint();
 		$headers = [
 			'Content-Type' => 'application/json',
-			'Authorization' => 'Bearer ' . PluginConfig::getChatGptApiKey(),
+//			'Authorization' => 'Bearer ' . PluginConfig::getChatGptApiKey(), // TODO uncomment after implmeneting gtp error handling
 
 		];
 		return wp_remote_post($endpoint, ['headers' => $headers, 'body' => $requestBody]);
@@ -72,5 +78,10 @@ class PluginRestApiHandler
 	{
 		$responseBody = wp_remote_retrieve_body($response);
 		return json_decode($responseBody, true);
+	}
+
+	private function isChatGptError(array $responseBody): bool
+	{
+		return isset($responseBody['error']);
 	}
 }

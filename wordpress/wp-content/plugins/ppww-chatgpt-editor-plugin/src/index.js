@@ -32,6 +32,8 @@ function EditComponent(props) {
             return;
         }
 
+        // TODO hide error message before sending new request
+
         sendApiCall(question);
         // const answer = {
         //     'role': 'assistant',
@@ -54,8 +56,30 @@ function EditComponent(props) {
                 updateMessages(question, response.data);
             })
             .catch(error => {
-                console.log(error);
+                const errorMessage = 'CHAT GPT API ERROR: ' + error.response.data.data.response.error.message;
+                console.log(errorMessage);
+
+                const errorElement = document.querySelector(".ppww-chatgpt-editor-block-error-message");
+                // TODO use parent in above to take proper block error message
+                // TODO then pass element and error message to showError function
+                // TODO and then below 2 lines are not necessary (handled within a function)
+                // TODO same you dont need to console.log error message as above
+                errorElement.innerHTML = errorMessage;
+                errorElement.style.display = 'block';
             });
+    }
+
+    function showError(errorElement, errorMessage) {
+        errorElement.innerHTML = errorMessage;
+        errorElement.style.display = 'block';
+    }
+
+    function hideClickedElement(event) {
+        hideElement(event.target);
+    }
+
+    function hideElement(element) {
+        element.style.display = 'none';
     }
 
     function updateMessages(question, answer) {
@@ -85,6 +109,11 @@ function EditComponent(props) {
                 <FlexItem>
                     <Button className="ppww-chatgpt-editor-block-button" onClick={sendQuestion}>Send Question</Button>
                 </FlexItem>
+            </Flex>
+            <Flex>
+                <FlexBlock>
+                    <div onClick={hideClickedElement} className="ppww-chatgpt-editor-block-error-message">Error message here</div>
+                </FlexBlock>
             </Flex>
         </div>
     );

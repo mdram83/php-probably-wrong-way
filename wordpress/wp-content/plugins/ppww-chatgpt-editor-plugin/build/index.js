@@ -2307,6 +2307,9 @@ function EditComponent(props) {
     if (question === '') {
       return;
     }
+
+    // TODO hide error message before sending new request
+
     sendApiCall(question);
     // const answer = {
     //     'role': 'assistant',
@@ -2327,8 +2330,26 @@ function EditComponent(props) {
       console.log(response.data);
       updateMessages(question, response.data);
     }).catch(error => {
-      console.log(error);
+      const errorMessage = 'CHAT GPT API ERROR: ' + error.response.data.data.response.error.message;
+      console.log(errorMessage);
+      const errorElement = document.querySelector(".ppww-chatgpt-editor-block-error-message");
+      // TODO use parent in above to take proper block error message
+      // TODO then pass element and error message to showError function
+      // TODO and then below 2 lines are not necessary (handled within a function)
+      // TODO same you dont need to console.log error message as above
+      errorElement.innerHTML = errorMessage;
+      errorElement.style.display = 'block';
     });
+  }
+  function showError(errorElement, errorMessage) {
+    errorElement.innerHTML = errorMessage;
+    errorElement.style.display = 'block';
+  }
+  function hideClickedElement(event) {
+    hideElement(event.target);
+  }
+  function hideElement(element) {
+    element.style.display = 'none';
   }
   function updateMessages(question, answer) {
     // TODO adjust below format to use same format for both question and asnwer and maybe directly what's coming from api call?
@@ -2357,7 +2378,10 @@ function EditComponent(props) {
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexItem, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
     className: "ppww-chatgpt-editor-block-button",
     onClick: sendQuestion
-  }, "Send Question"))));
+  }, "Send Question"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexBlock, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    onClick: hideClickedElement,
+    className: "ppww-chatgpt-editor-block-error-message"
+  }, "Error message here"))));
 }
 })();
 

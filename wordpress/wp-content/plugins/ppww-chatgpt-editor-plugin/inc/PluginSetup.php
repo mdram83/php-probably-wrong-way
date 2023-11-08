@@ -37,7 +37,9 @@ class PluginSetup
 	{
 		// TODO considering escaping html as I expect some code coming back from chatgpt
 		ob_start();
+		echo '<pre>';
 		var_dump($attributes);
+		echo '</pre>';
 		return ob_get_clean();
 //		return '<div>Render Callback Test with attributes: '.var_export($attributes, true) . '</div';
 	}
