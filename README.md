@@ -2,10 +2,10 @@
 
 Todos:
 6. GPT Plugin
-- better handle errors (return 404 or sth from php)
-- check/implement handling dialouge
+- handle empty chat on frontend
 - index.js - better select input so you answer to proper element (if 2 chat blocks)
-- 
+- check how code examples are retunred and displayed, maybe I need to escape html in some cases
+- add loading with timer to time-out
 
 
 Manual steps required to use php-probably-wrong-way theme and plugins in production:

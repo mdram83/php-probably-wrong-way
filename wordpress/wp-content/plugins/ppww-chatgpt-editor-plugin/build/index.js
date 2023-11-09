@@ -2277,9 +2277,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-// TODO add function to disable post save/update if block has no received answers.
-
 wp.blocks.registerBlockType('ppww/ppww-chatgpt-editor-plugin', {
   title: 'ChatGPT Conversation',
   icon: 'format-status',
@@ -2294,51 +2291,28 @@ wp.blocks.registerBlockType('ppww/ppww-chatgpt-editor-plugin', {
   save: () => null
 });
 function EditComponent(props) {
-  function getQuestionElement() {
-    return document.querySelector("input[id='chatgpt-question']"); // TODO change to parent as this will allow to only one chat per html document
-  }
-
-  function getQuestionContent() {
-    return getQuestionElement().value.trim();
-  }
-  function sendQuestion() {
-    const questionElement = getQuestionElement();
-    const question = getQuestionContent();
+  function sendQuestion(event) {
+    const errorElement = event.target.parentElement.parentElement.parentElement.querySelector(".ppww-chatgpt-editor-block-error-message");
+    const questionElement = event.target.parentElement.parentElement.querySelector("input[name='question']");
+    const question = questionElement.value.trim();
     if (question === '') {
+      questionElement.focus();
+      showError(errorElement, 'Please provide the question.');
       return;
     }
-
-    // TODO hide error message before sending new request
-
-    sendApiCall(question);
-    // const answer = {
-    //     'role': 'assistant',
-    //     'content': 'This is an answer to your question: ' + question,
-    // };
-
-    questionElement.value = '';
-    // updateMessages(question, answer);
-  }
-
-  function sendApiCall(question) {
+    hideElement(errorElement);
     const data = {
-      question: question
+      previousMessages: props.attributes.messages,
+      nextQuestion: question
     };
     (axios__WEBPACK_IMPORTED_MODULE_2___default().defaults).headers.common["X-WP-Nonce"] = ppwwChatgptEditorPluginData.nonce;
-    alert('Sending question: ' + data);
     axios__WEBPACK_IMPORTED_MODULE_2___default().post(ppwwChatgptEditorPluginData.rootUrl + '/wp-json/ppww-chatgpt/v1/chat/', data).then(response => {
-      console.log(response.data);
-      updateMessages(question, response.data);
+      questionElement.value = '';
+      updateMessages(question, response.data.choices[0].message);
     }).catch(error => {
-      const errorMessage = 'CHAT GPT API ERROR: ' + error.response.data.data.response.error.message;
-      console.log(errorMessage);
-      const errorElement = document.querySelector(".ppww-chatgpt-editor-block-error-message");
-      // TODO use parent in above to take proper block error message
-      // TODO then pass element and error message to showError function
-      // TODO and then below 2 lines are not necessary (handled within a function)
-      // TODO same you dont need to console.log error message as above
-      errorElement.innerHTML = errorMessage;
-      errorElement.style.display = 'block';
+      var _ref;
+      const errorMessage = (_ref = 'API CALL ERROR: ' + error.response.data.data) !== null && _ref !== void 0 ? _ref : 'internal error';
+      showError(errorElement, errorMessage);
     });
   }
   function showError(errorElement, errorMessage) {
@@ -2352,18 +2326,13 @@ function EditComponent(props) {
     element.style.display = 'none';
   }
   function updateMessages(question, answer) {
-    // TODO adjust below format to use same format for both question and asnwer and maybe directly what's coming from api call?
-
     props.setAttributes({
       messages: props.attributes.messages.concat([{
-        'role': 'user',
-        'content': question
+        role: 'user',
+        content: question
       }, answer])
     });
   }
-
-  // console.log(props.attributes);
-
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "ppww-chatgpt-editor-block"
   }, props.attributes.messages.map(element => {
@@ -2371,7 +2340,7 @@ function EditComponent(props) {
       className: 'ppww-chatgpt-editor-block-message-' + element.role
     }, element.content);
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexBlock, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
-    id: "chatgpt-question",
+    name: "question",
     label: "Next question for ChatGPT",
     placeholder: "Your next question",
     onChange: () => null

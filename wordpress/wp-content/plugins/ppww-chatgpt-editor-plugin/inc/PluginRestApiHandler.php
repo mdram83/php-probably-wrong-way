@@ -23,44 +23,35 @@ class PluginRestApiHandler
 		return current_user_can('edit_posts');
 	}
 
-	public function handleChatRequest(\WP_REST_Request $data): array|\WP_Error|\WP_REST_Request|string // TODO remove request part from returned types after tests
+	public function handleChatRequest(\WP_REST_Request $data): array|\WP_Error
 	{
 		$requestBody = $this->prepareRequestBody($data);
 		$response = $this->getResponse($requestBody);
 
 		if (is_wp_error($response)) {
-			wp_send_json_error(null, 502);
+			wp_send_json_error($response->get_error_message(), 502);
+			exit();
 		}
 
 		$responseBody = $this->prepareResponseBody($response);
 
 		if ($this->isChatGptError($responseBody)) {
-			wp_send_json_error(['response' => $responseBody], 502);
+			wp_send_json_error($responseBody['error']['message'], 502);
+			exit();
 		}
 
 		return $responseBody;
-
-//		return [
-//			'role' => 'assistant',
-//			'content' => 'API call answer to question: ' . $data['question'],
-//		];
 	}
 
 	private function prepareRequestBody(\WP_REST_Request $data): string
 	{
-		return json_encode([
-			'model' => PluginConfig::getChatGptApiModel(),
-			'messages' => [
-				[
-					'role' => 'system',
-					'content' => PluginConfig::getChatGptApiSystemContent(),
-				],
-				[
-					'role' => 'user',
-					'content' => $data['question'], // TODO rebuild depending on what I will send from editor
-				],
-			],
-		]);
+		$messages = [['role' => 'system', 'content' => PluginConfig::getChatGptApiSystemContent()]];
+		foreach ($data['previousMessages'] as $message) {
+			$messages[] = $message;
+		}
+		$messages[] = ['role' => 'user', 'content' => $data['nextQuestion']];
+
+		return json_encode(['model' => PluginConfig::getChatGptApiModel(), 'messages' => $messages]);
 	}
 
 	private function getResponse(string $requestBody): array|\WP_Error
@@ -68,10 +59,9 @@ class PluginRestApiHandler
 		$endpoint = PluginConfig::getChatGptApiEndpoint();
 		$headers = [
 			'Content-Type' => 'application/json',
-//			'Authorization' => 'Bearer ' . PluginConfig::getChatGptApiKey(), // TODO uncomment after implmeneting gtp error handling
-
+			'Authorization' => 'Bearer ' . PluginConfig::getChatGptApiKey(),
 		];
-		return wp_remote_post($endpoint, ['headers' => $headers, 'body' => $requestBody]);
+		return wp_remote_post($endpoint, ['headers' => $headers, 'body' => $requestBody, 'timeout' => 20]);
 	}
 
 	private function prepareResponseBody(array $response): array
