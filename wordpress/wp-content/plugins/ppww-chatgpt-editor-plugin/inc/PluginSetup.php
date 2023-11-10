@@ -7,7 +7,6 @@ class PluginSetup
 	public function __construct(private readonly string $pluginFolderUrl)
 	{
 		add_action('init', [$this, 'registerBlockType']);
-		add_filter('tiny_mce_before_init', [$this, 'setAllowedAttributesInContent']);
 	}
 
 	public function registerBlockType(): void
@@ -32,12 +31,6 @@ class PluginSetup
 			'rootUrl' => get_site_url(),
 			'nonce' => wp_create_nonce('wp_rest'),
 		]);
-	}
-
-	public function setAllowedAttributesInContent(array $settings): array
-	{
-			$settings['extended_valid_elements'] = '<pre><code></code></pre>';
-			return $settings;
 	}
 
 	public function renderCallback($attributes): string
