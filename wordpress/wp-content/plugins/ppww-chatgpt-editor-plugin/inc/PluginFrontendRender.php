@@ -36,8 +36,6 @@ class PluginFrontendRender
 		$className = 'ppww-chatgpt-frontend-' . $message['role'];
 		$roleName = $message['role'] === 'user' ? get_the_author() : 'Chat GPT';
 
-		// TODO considering escaping html as I expect some code coming back from chatgpt
-
 		return (
 			'<blockquote class="' . $className . '">'
 			. "<strong>$roleName</strong>"
