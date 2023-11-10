@@ -22,7 +22,7 @@ class PluginSetup
 			'ppww/ppww-chatgpt-editor-plugin',
 			[
 				'editor_script' => 'chatgpt-block-script',
-				'editor_style' => 'chatgpt-block-style',
+				'style' => 'chatgpt-block-style',
 				'render_callback' => [$this, 'renderCallback'],
 			]
 		);
@@ -35,12 +35,8 @@ class PluginSetup
 
 	public function renderCallback($attributes): string
 	{
-		// TODO considering escaping html as I expect some code coming back from chatgpt
 		ob_start();
-		echo '<pre>';
-		var_dump($attributes);
-		echo '</pre>';
+		echo (new PluginFrontendRender($attributes))->getContent();
 		return ob_get_clean();
-//		return '<div>Render Callback Test with attributes: '.var_export($attributes, true) . '</div';
 	}
 }

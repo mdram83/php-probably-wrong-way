@@ -3,9 +3,10 @@
 Todos:
 6. GPT Plugin
 - handle empty chat on frontend
-- index.js - better select input so you answer to proper element (if 2 chat blocks)
-- check how code examples are retunred and displayed, maybe I need to escape html in some cases
+- handle not empty chat on frontend
+- check how code examples are retunred and displayed, maybe I need to escape html in some cases or do some other stuff...
 - add loading with timer to time-out
+- block sending in case one request is in progress
 
 
 Manual steps required to use php-probably-wrong-way theme and plugins in production:

@@ -53,3 +53,21 @@
     color: #aa0000;
     cursor: pointer;
 }
+
+div.ppww-chatgpt-frontend {
+    margin-bottom: 3em;
+}
+
+blockquote.ppww-chatgpt-frontend-user {
+    border-left: solid 4px #2ebaae;
+    font-style: normal;
+    margin: 0 0 1em 0;
+    padding: 0.5em 0 0.5em 2em;
+}
+
+blockquote.ppww-chatgpt-frontend-assistant {
+    border-left: solid 4px rgba(160, 160, 160, 0.3);
+    font-style: normal;
+    margin: 0 0 1em 0;
+    padding: 0.5em 0 0.5em 2em;
+}
