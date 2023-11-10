@@ -42,7 +42,7 @@ class PluginFrontendRender
 			'<blockquote class="' . $className . '">'
 			. "<strong>$roleName</strong>"
 			. ': '
-			. $message['content']
+			. strip_tags($message['content'], '<pre>')
 			. '</blockquote>'
 		);
 	}
