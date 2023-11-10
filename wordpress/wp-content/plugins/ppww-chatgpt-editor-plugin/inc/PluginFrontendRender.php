@@ -35,12 +35,12 @@ class PluginFrontendRender
 	{
 		$className = 'ppww-chatgpt-frontend-' . $message['role'];
 		$roleName = $message['role'] === 'user' ? get_the_author() : 'Chat GPT';
+		$content = $this->stripTagsExceptCode($message['content']);
 
 		return (
 			'<blockquote class="' . $className . '">'
 			. "<strong>$roleName</strong>"
-			. ': '
-			. strip_tags($message['content'], '<pre>')
+			. $content
 			. '</blockquote>'
 		);
 	}
@@ -48,5 +48,23 @@ class PluginFrontendRender
 	private function getConversationFooter(): string
 	{
 		return '</div>';
+	}
+
+	private function stripTagsExceptCode(string $content): string
+	{
+		$dom = new \DOMDocument();
+
+		$dom->loadHTML(
+			strip_tags($content, '<pre><code>'),
+			LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
+		);
+
+		foreach ((new \DOMXPath($dom))->query('//code') as $codeNode) {
+			$preNode = $dom->createElement('pre');
+			$preNode->appendChild($codeNode->cloneNode(true));
+			$codeNode->parentNode->replaceChild($preNode, $codeNode);
+		}
+
+		return $dom->saveHTML();
 	}
 }

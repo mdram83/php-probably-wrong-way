@@ -58,6 +58,10 @@ div.ppww-chatgpt-frontend {
     margin-bottom: 3em;
 }
 
+div.ppww-chatgpt-frontend p {
+    margin-bottom: 0;
+}
+
 blockquote.ppww-chatgpt-frontend-user {
     border-left: solid 4px #2ebaae;
     font-style: normal;
