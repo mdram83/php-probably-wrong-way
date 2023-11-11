@@ -1,24 +1,24 @@
-### php-probably-wrong-way
+# php-probably-wrong-way
 
 ## Introduction
 
-# What is php-probably-wrong-way
+### What is php-probably-wrong-way
 This repository is my first approach to build a theme and plugin for WordPress.
 It is used only for educational purpose, though I may consider to use this theme and plugin to run real blog.
 
-# Theme
+### Theme
 Theme is build using following template as visual baseline - https://html5up.net/future-imperfect.
 Main idea is to make simple theme that allows me to publish programming related blog posts, build my portfolio and publish some auxiliary posts (aka Inspirations).
 Theme setup requires some extra configuration that is described later in this document.
 
-# Chat-gpt-editor Plugin
+### Chat-gpt-editor Plugin
 Plugin can be used independently of the Theme.
 Plugin allows you to run conversation with ChatGPT when writing the blog post and display this conversation in nice way later on together with post content.
 Also, here some minimal configuration is required.
 
 ## Configuration steps required to use php-probably-wrong-way theme and plugin in production:
 
-# ppww-theme configuration steps
+### ppww-theme configuration steps
 1. Copy ppww-theme into your /wp-content/themes/ folder.
 2. Activate the theme.
 3. Go to Appearance>Customize>Site Identity>Site Icon and chose one prepared for site (/ppww-theme/images/favicon.png)
@@ -57,7 +57,7 @@ Though there is no impact on any functionality, no matter what statuses are set 
 13. Create and set as default 'Uncategorized' category for posts (if not better is from english default installation).
 14. Start creating and publishing your own Content!
 
-# ppww-chatgpt-editor-plugin configuration steps
+### ppww-chatgpt-editor-plugin configuration steps
 1. Copy ppww-chatgpt-editor-plugin into your /wp-content/plugins/ folder.
 2. Make sure you have a ChatGPT API Key available (see on OpenAI pages).
 3. Setup your php server environment variable 'CHAT_GPT_API_KEY' to be equal to your ChatGPT API Key.
