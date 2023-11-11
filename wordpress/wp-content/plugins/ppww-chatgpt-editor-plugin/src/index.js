@@ -1,6 +1,6 @@
 import './index.css';
 import axios from 'axios';
-import {TextControl, Button, Flex, FlexBlock, FlexItem} from '@wordpress/components';
+import {TextControl, Button, Flex, FlexBlock, FlexItem, Spinner} from '@wordpress/components';
 
 wp.blocks.registerBlockType('ppww/ppww-chatgpt-editor-plugin', {
     title: 'ChatGPT Conversation',
@@ -26,7 +26,12 @@ function EditComponent(props) {
             return;
         }
 
+        const sendButton = event.target;
+        const loadingButton = event.target.parentElement.querySelector(".ppww-chatgpt-editor-block-loading-button");
+
         hideElement(errorElement);
+        hideElement(sendButton);
+        showElement(loadingButton, 'inline-flex');
 
         const data = {
             previousMessages: props.attributes.messages,
@@ -40,14 +45,18 @@ function EditComponent(props) {
                 updateMessages(question, response.data.choices[0].message);
             })
             .catch(error => {
-                const errorMessage = 'API CALL ERROR: ' + error.response.data.data ?? 'internal error';
+                const errorMessage = 'API CALL ERROR: ' + error.response.data.data ?? 'unknown error';
                 showError(errorElement, errorMessage);
+            })
+            .then(() => {
+                hideElement(loadingButton);
+                showElement(sendButton);
             });
     }
 
     function showError(errorElement, errorMessage) {
         errorElement.innerHTML = errorMessage;
-        errorElement.style.display = 'block';
+        showElement(errorElement);
     }
 
     function hideClickedElement(event) {
@@ -58,8 +67,11 @@ function EditComponent(props) {
         element.style.display = 'none';
     }
 
-    function updateMessages(question, answer) {
+    function showElement(element, displayType = 'block') {
+        element.style.display = displayType;
+    }
 
+    function updateMessages(question, answer) {
         props.setAttributes({messages: props.attributes.messages.concat([
             {
                 role: 'user',
@@ -80,6 +92,7 @@ function EditComponent(props) {
                 </FlexBlock>
                 <FlexItem>
                     <Button className="ppww-chatgpt-editor-block-button" onClick={sendQuestion}>Send Question</Button>
+                    <Button className="ppww-chatgpt-editor-block-loading-button"><Spinner className="ppww-chatgpt-editor-block-spinner" />Loading...&nbsp;</Button>
                 </FlexItem>
             </Flex>
             <Flex>

@@ -2300,7 +2300,11 @@ function EditComponent(props) {
       showError(errorElement, 'Please provide the question.');
       return;
     }
+    const sendButton = event.target;
+    const loadingButton = event.target.parentElement.querySelector(".ppww-chatgpt-editor-block-loading-button");
     hideElement(errorElement);
+    hideElement(sendButton);
+    showElement(loadingButton, 'inline-flex');
     const data = {
       previousMessages: props.attributes.messages,
       nextQuestion: question
@@ -2311,19 +2315,25 @@ function EditComponent(props) {
       updateMessages(question, response.data.choices[0].message);
     }).catch(error => {
       var _ref;
-      const errorMessage = (_ref = 'API CALL ERROR: ' + error.response.data.data) !== null && _ref !== void 0 ? _ref : 'internal error';
+      const errorMessage = (_ref = 'API CALL ERROR: ' + error.response.data.data) !== null && _ref !== void 0 ? _ref : 'unknown error';
       showError(errorElement, errorMessage);
+    }).then(() => {
+      hideElement(loadingButton);
+      showElement(sendButton);
     });
   }
   function showError(errorElement, errorMessage) {
     errorElement.innerHTML = errorMessage;
-    errorElement.style.display = 'block';
+    showElement(errorElement);
   }
   function hideClickedElement(event) {
     hideElement(event.target);
   }
   function hideElement(element) {
     element.style.display = 'none';
+  }
+  function showElement(element, displayType = 'block') {
+    element.style.display = displayType;
   }
   function updateMessages(question, answer) {
     props.setAttributes({
@@ -2347,7 +2357,11 @@ function EditComponent(props) {
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexItem, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
     className: "ppww-chatgpt-editor-block-button",
     onClick: sendQuestion
-  }, "Send Question"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexBlock, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, "Send Question"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    className: "ppww-chatgpt-editor-block-loading-button"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Spinner, {
+    className: "ppww-chatgpt-editor-block-spinner"
+  }), "Loading...\xA0"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexBlock, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     onClick: hideClickedElement,
     className: "ppww-chatgpt-editor-block-error-message"
   }, "Error message here"))));

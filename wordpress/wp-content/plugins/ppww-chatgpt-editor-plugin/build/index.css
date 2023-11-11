@@ -48,6 +48,32 @@
     white-space: nowrap;
 }
 
+.ppww-chatgpt-editor-block-loading-button {
+    position: relative;
+    bottom: -4px;
+    background: #0f5fb7;
+    color: #ffffff;
+    outline: 1px solid transparent;
+    text-decoration: none;
+    text-shadow: none;
+    white-space: nowrap;
+    display: none;
+}
+
+.ppww-chatgpt-editor-block-loading-button:hover {
+    background: #0f5fb7;
+    color: #ffffff;
+    outline: 1px solid transparent;
+    text-decoration: none;
+    text-shadow: none;
+    white-space: nowrap;
+    cursor: default;
+}
+
+.ppww-chatgpt-editor-block-spinner {
+    margin: 0 0.5em !important;
+}
+
 .ppww-chatgpt-editor-block-error-message {
     display: none;
     margin-top: 1em;

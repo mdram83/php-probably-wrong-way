@@ -1,11 +1,5 @@
 # php-probably-wrong-way
 
-Todos:
-6. GPT Plugin
-- add loading with timer to time-out
-- block sending in case one request is in progress
-
-
 Manual steps required to use php-probably-wrong-way theme and plugins in production:
 1. After activating theme go to Appearance, Customize, Site Identity, Site Icon and chose one prepared for site.
 2. Add tagline - short info what is this page about... 'A beginner's programming diary.'
