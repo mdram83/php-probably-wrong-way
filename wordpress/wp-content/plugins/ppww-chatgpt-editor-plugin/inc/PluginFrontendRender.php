@@ -55,7 +55,7 @@ class PluginFrontendRender
 		$dom = new \DOMDocument();
 
 		$dom->loadHTML(
-			strip_tags($content, '<pre><code>'),
+			'<?xml encoding="UTF-8">' . strip_tags($content, '<pre><code>'),
 			LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
 		);
 
